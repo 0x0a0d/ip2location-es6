@@ -57,7 +57,7 @@ class IP2Location{
             DBCountIPv6: this._read_32(14),
             BaseAddrIPv6: this._read_32(18),
             IndexBaseAddr: this._read_32(22),
-            IndexBaseAddrIPv6: this._read_32(26l),
+            IndexBaseAddrIPv6: this._read_32(26),
         };
 
         if (this.mydb.IndexBaseAddr > 0) {
