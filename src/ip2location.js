@@ -10,10 +10,7 @@ const ip2no = IPv6 => {
     let max_sections = 8; // 8 blocks
     let hex = IPv6
         .split(':')
-        .map((block, index, arr)=>{
-            return block.length === 0?'0000'.repeat(max_sections - (arr.length - 1)):('000' + block).substr(-4)
-        })
-        .join('');
+        .reduce((_hex, block, index, arr) => _hex + (block.length === 0 ? '0000'.repeat(max_sections - (arr.length - 1)):`000${block}`.substr(-4)), '');
     return bigInt(hex, 16);
 };
 const pos = {
@@ -165,7 +162,8 @@ class IP2Location{
 
     IP2Location_query(my_ip, ip_type, data) {
         let low = 0, mid = 0, high = 0;
-        let DBType, DBColumn, BaseAddr, ColumnSize, IndexAddr;
+        let BaseAddr, ColumnSize, IndexAddr;
+        // let DBType, DBColumn;
         let ip_num;
         // DBType = this.mydb.DBType;
         // DBColumn = this.mydb.DBColumn;
